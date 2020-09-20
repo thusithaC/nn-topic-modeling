@@ -1,0 +1,18 @@
+version: '3'
+services:
+    mongodb-service:
+        image: "mongo:3.6.18"
+        ports:
+            - 27017:27017
+        environment:
+            - discovery.type=single-node
+        sysctls:
+            - net.ipv4.tcp_keepalive_intvl=60
+            - net.ipv4.tcp_keepalive_probes=15
+            - net.ipv4.tcp_keepalive_time=120
+        volumes:
+        - /home/thusitha/work/bigdata/datasets/mongodb:/data/db
+networks:
+    default:
+        external:
+            name: bridge-network
